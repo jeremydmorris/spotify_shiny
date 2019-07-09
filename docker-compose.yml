@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+    postgres_db: 
+        image: postgres:11.3
+        ports:
+            - 5432:5432
+            
+    shiny_server:
+        image: rocker/shiny-verse
+        volumes:
+            - ./spotify_connect_shiny:/srv/shiny-server/spotify_app
+        ports:
+            - 80:3838
+        environment:
+            - USER=shiny
