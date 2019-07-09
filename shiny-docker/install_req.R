@@ -1,0 +1,1 @@
+devtools::install('/home/shiny/spotifyconnect')

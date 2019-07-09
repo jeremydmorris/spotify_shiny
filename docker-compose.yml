@@ -7,7 +7,7 @@ services:
             - 5432:5432
             
     shiny_server:
-        image: rocker/shiny-verse
+        build: ./shiny-docker
         volumes:
             - ./spotify_connect_shiny:/srv/shiny-server/spotify_app
         ports:
