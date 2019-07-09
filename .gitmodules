@@ -1,0 +1,3 @@
+[submodule "spotifyconnect"]
+	path = spotifyconnect
+	url = https://github.com/jeremydmorris/spotifyconnect
