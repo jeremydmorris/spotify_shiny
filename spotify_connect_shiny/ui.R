@@ -13,7 +13,7 @@ library(shiny)
 shinyUI(fluidPage(
 
     # Application title
-    titlePanel("Old Faithful Geyser Data"),
+    titlePanel("Register your Spotify data"),
 
     # Sidebar with a slider input for number of bins
     sidebarLayout(
@@ -23,12 +23,15 @@ shinyUI(fluidPage(
                         min = 1,
                         max = 50,
                         value = 30),
-            textInput("caption", "Caption", "Data Summary")
+            textInput("caption", "Caption", "Data Summary"),
+            actionButton("register_button", "Register Me!"),
+            HTML(paste0('<a href="',spotifyconnect::get_registration_url(),'">Click here to register your Spotify account</a>'))
         ),
 
         # Show a plot of the generated distribution
         mainPanel(
-            plotOutput("distPlot")
+            plotOutput("distPlot"),
+            verbatimTextOutput("query_code")
         )
     )
 ))

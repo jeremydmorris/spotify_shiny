@@ -7,9 +7,7 @@
 #' @export
 #' @examples
 #' register_user()
-register_user <- function(redirect){
-	parsed_redirect <- httr::parse_url(redirect)
-	user_code <- parsed_redirect$query$code
+register_user <- function(user_code){
 
 	#construct body of POST request
 	request_body <- list(grant_type='authorization_code',code=user_code,redirect_uri=Sys.getenv('SPOTIFYREDIRECTURI'))
@@ -31,10 +29,6 @@ register_user <- function(redirect){
 		scope=user_token$scope,
 		created=Sys.time()
 	)
-	cat(rjson::toJSON(user_save),file=paste0(Sys.getenv('SPOTIFYAPIDIR'),'/',username,'.json'))
-
-	.spotifyconnect_env[[ username ]]$access_token <- user_token$access_token
-	.spotifyconnect_env[[ username ]]$access_token_created <- Sys.time()
 
 	out <- user_save
 

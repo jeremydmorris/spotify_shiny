@@ -2,7 +2,9 @@ version: '3'
 
 services:
     postgres_db: 
-        image: postgres:11.3
+        build: ./postgres-docker
+        environment:
+            - POSTGRES_PASSWORD=docker
         ports:
             - 5432:5432
             
@@ -10,6 +12,7 @@ services:
         build: ./shiny-docker
         volumes:
             - ./spotify_connect_shiny:/srv/shiny-server/spotify_app
+            - ./logs:/var/log/shiny-server/
         ports:
             - 80:3838
         environment:
